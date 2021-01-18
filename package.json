@@ -1,0 +1,43 @@
+{
+  "name": "postmessage-scope",
+  "version": "1.0.0",
+  "description": "a package of postMessage",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha test/test.js",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zhangjialegh/postmessage-scope.git"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "iframe",
+    "postMessage",
+    "postis"
+  ],
+  "author": "zhangjiale <zjl1195185765@qq.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zhangjialegh/postmessage-scope/issues"
+  },
+  "homepage": "https://github.com/zhangjialegh/postmessage-scope",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "babel-loader": "^8.2.2",
+    "mocha": "^8.2.1",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^4.3.1"
+  },
+  "dependencies": {
+    "core-js": "^2.6.12",
+    "postis": "^2.2.0"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  }
+}

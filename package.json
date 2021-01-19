@@ -1,11 +1,10 @@
 {
   "name": "postis-plus",
   "version": "1.0.0",
-  "description": "a package of postMessage",
+  "description": "a extend about postis of postMessage",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/test.js",
-    "build": "webpack"
+    "test": "test/test.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +25,7 @@
   },
   "homepage": "https://github.com/zhangjialegh/postis-plus",
   "devDependencies": {
+    "gulp": "^4.0.2",
     "mocha": "^8.2.1"
   },
   "dependencies": {

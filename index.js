@@ -21,10 +21,9 @@ let transport
  *
  * @returns {Transport}
  */
-module.exports = function postMessageScope (postisOptions) {
+module.exports = function postisPlus (postisOptions) {
   if (!transport) {
     transport = new Transport({ backend: new PostMessage({ postisOptions: postisOptions || defaultPostisOptions }) })
   }
-
   return transport
 }

@@ -1,8 +1,9 @@
 const {
   MESSAGE_TYPE_EVENT,
-  MESSAGE_TYPE_REQUEST,
-  MESSAGE_TYPE_RESPONSE
+  MESSAGE_TYPE_RESOLVE
 } = require('./constants')
+
+const MESSAGE_TYPE_RESOLVE_THEN = 'MESSAGE_TYPE_RESOLVE_THEN'
 
 /**
 * Stores the currnet transport backend that have to be used. Also implements
@@ -78,24 +79,23 @@ module.exports = class Transport {
    * @returns {void}
    */
   _onMessageReceived (message) {
-    if (message.type === MESSAGE_TYPE_RESPONSE) {
+    if (message.type === MESSAGE_TYPE_RESOLVE_THEN) {
       const handler = this._responseHandlers.get(message.id)
-
       if (handler) {
         handler(message)
         this._responseHandlers.delete(message.id)
       }
-    } else if (message.type === MESSAGE_TYPE_REQUEST) {
-      this.emit('request', message.data, (result, error) => {
+    } else if (message.type === MESSAGE_TYPE_RESOLVE) {
+      this.emit(MESSAGE_TYPE_RESOLVE, message.data, (result, error) => {
         this._backend.send({
-          type: MESSAGE_TYPE_RESPONSE,
+          type: MESSAGE_TYPE_RESOLVE_THEN,
           error,
           id: message.id,
           result
         })
       })
     } else {
-      this.emit('event', message.data)
+      this.emit(MESSAGE_TYPE_EVENT, message.data)
     }
   }
 
@@ -164,6 +164,14 @@ module.exports = class Transport {
     return this
   }
 
+  onEvent(listener) {
+    return this.on(MESSAGE_TYPE_EVENT, listener)
+  }
+
+  onResolve(listener) {
+    return this.on(MESSAGE_TYPE_RESOLVE, listener)
+  }
+
   /**
    * Removes all listeners, or those of the specified eventName.
    *
@@ -222,7 +230,7 @@ module.exports = class Transport {
    * @param {Object} request - The request to be sent.
    * @returns {Promise}
    */
-  sendRequest (request) {
+  sendResolve (request) {
     if (!this._backend) {
       return Promise.reject(new Error('No transport backend defined!'))
     }
@@ -245,7 +253,7 @@ module.exports = class Transport {
       })
 
       this._backend.send({
-        type: MESSAGE_TYPE_REQUEST,
+        type: MESSAGE_TYPE_RESOLVE,
         data: request,
         id
       })

@@ -10,11 +10,4 @@ exports.MESSAGE_TYPE_EVENT = 'event'
  *
  * @type {string}
  */
-exports.MESSAGE_TYPE_REQUEST = 'request'
-
-/**
- * The message type for responses.
- *
- * @type {string}
- */
-exports.MESSAGE_TYPE_RESPONSE = 'response'
+exports.MESSAGE_TYPE_RESOLVE = 'resolve'

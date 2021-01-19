@@ -1,11 +1,11 @@
-# postmessage-scope
+# postis-plus
 
 #### the package base on [postis](https://github.com/adtile/postis#readme).
 
 ## Install
 
 ```js
-npm i postmessage-scope --save
+npm i postis-plus --save
 ```
 
 ## Example
@@ -13,7 +13,7 @@ npm i postmessage-scope --save
 
 ## Test
 
-see [test](https://github.com/zhangjialegh/postmessage-scope/blob/master/test/test.js).
+see [test](https://github.com/zhangjialegh/postis-plus/blob/master/test/test.js).
 
 ```js
 npm run test
